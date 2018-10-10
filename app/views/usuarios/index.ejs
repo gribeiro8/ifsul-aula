@@ -1,0 +1,27 @@
+<html>
+  <body>
+    <h1>Usuários</h1>
+
+    <table border="1">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nome</th>
+          <th>Grupo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%for(i=0;i<usuarios.length;i++){%>
+        <tr>
+          <td><%=usuarios[i].id%></td>
+          <td><%=usuarios[i].nome%></td>
+          <td><%=usuarios[i].nomegrupo%></td>
+        </tr>
+        <%}%>
+      </tbody>
+
+    </table>
+
+
+  </body>
+</html>
