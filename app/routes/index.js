@@ -1,11 +1,8 @@
-module.exports= function(app){
+module.exports = function (application) {
+  var controllerIndex = application.controllers.index;
 
-  app.get("/", function(req,res){
-    res.render("index",{
-      teste : "Meu teste"
-    });
+  application.get('/', function (req, res) {
+     controllerIndex.index(application,req,res);
   });
 
-}
-
-
+};
