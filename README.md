@@ -27,3 +27,13 @@ Modules and implementations we use:
 * Express-fileupdate [Express-fileupdate](https://www.npmjs.com/package/express-fileupload "Express-fileupdate")
 
 Adding static css / imgs / js files
+
+### To-do
+
+- [ ] Montagem do layout
+- [ ] Implementação dos usuários
+- [ ] Retornos com o módulo FLASH
+- [ ] Validação de campos com o VALIDATOR
+- [ ] Upload de foto com o EXPRESS-UPLOAD
+- [ ] Implementação do login
+- [ ] Montagem da sessão com percistência através do bando com SESSION
