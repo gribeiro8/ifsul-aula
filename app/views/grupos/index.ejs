@@ -1,0 +1,14 @@
+<h1>Grupos</h1>
+
+<table border="1">
+  <tr>
+    <th>Id</th>
+    <th>Nome do grupo</th>
+  </tr>
+  <%for(i=0;i<grupos.length;i++){%>
+  <tr>
+    <td><%=grupos[i].id%></td>
+    <td><%=grupos[i].nome%></td>
+  </tr>
+  <% } %>
+</table>
