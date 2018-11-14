@@ -8,14 +8,14 @@ controller.index = function (application, req, res) {
     if(erro){
       res.send(erro)
     }else{
-      res.render("grupos/index", {
+      res.render("grupos/index.njk", {
         grupos : grupos
       });
     }
   });
 };
 controller.adicionar = function (application, req, res) {
-  res.render("grupos/adicionar", {
+  res.render("grupos/adicionar.njk", {
   });
 };
 

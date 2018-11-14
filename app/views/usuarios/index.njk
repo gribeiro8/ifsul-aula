@@ -1,0 +1,56 @@
+{% extends "layout/layout.njk" %}
+{% block header %}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>
+    Usuários
+    <small></small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li class="active">Usuários</li>
+  </ol>
+</section>
+{% endblock %}
+
+{% block conteudo %}
+<div class="row">
+  <div class="col-xs-12">
+    <div class="box">
+      <div class="box-header">
+        <h3 class="box-title">Lista de usuários</h3>
+
+        <div class="box-tools">
+          <div class="input-group-btn">
+            <a href="/usuarios/adicionar">
+              <button type="button" class="btn btn-sm btn-block btn-success"><i class="fa fa-plus"></i> Adicionar</button>
+            </a>
+          </div>
+
+        </div>
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body table-responsive no-padding">
+        <table class="table table-hover">
+          <tr>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>Grupo</th>
+          </tr>
+          {% for usuario in usuarios %}
+          <tr>
+            <td>{{ usuario.id }}</td>
+            <td>{{ usuario.nome }}</td>
+            <td>{{ usuario.grupos_id }}</td>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+      <!-- /.box-body -->
+    </div>
+    <!-- /.box -->
+  </div>
+</div>
+
+
+{% endblock %}

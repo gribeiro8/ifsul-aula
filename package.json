@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js"
+    "start": "nodemon -e .njk,.js ./app.js 3000"
   },
   "author": "Gabriel",
   "license": "ISC",
@@ -13,6 +13,8 @@
     "consign": "^0.1.6",
     "ejs": "^2.6.1",
     "express": "^4.16.3",
-    "mysql": "^2.16.0"
+    "mysql": "^2.16.0",
+    "nunjucks": "^3.1.4",
+    "path": "^0.12.7"
   }
 }

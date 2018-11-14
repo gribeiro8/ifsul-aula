@@ -8,14 +8,14 @@ controller.index = function (application, req, res) {
     if(erro){
       res.send(erro)
     }else{
-      res.render("usuarios/index", {
+      res.render("usuarios/index.njk", {
         usuarios : usuarios
       });
     }
   });
 };
 controller.adicionar = function (application, req, res) {
-  res.render("usuarios/adicionar", {
+  res.render("usuarios/adicionar.njk", {
   });
 };
 
