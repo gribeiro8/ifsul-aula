@@ -4,8 +4,26 @@
   </head>
   <h1>Adicionar Usuários</h1>
   <form action="" method="post">
-    <label for="">Nome</label>
-    <input type="text" name="nome">
-    <input type="submit" value="enviar">
+    <p>
+      <label for="">Nome</label>
+      <input type="text" name="nome">
+    </p>
+    <p>
+      <label for="">E-mail</label>
+      <input type="email" name="email">
+    </p>
+    <p>
+      <label for="">Senha</label>
+      <input type="password" name="senha">
+    </p>
+    <p>
+      <label for="">Grupo</label>
+      <select name="grupo">
+        {% for grupo in grupos %}
+        <option value="{{ grupo.id }}">{{ grupo.nome }}</option>
+        {% endfor %}
+      </select>
+    </p>
+    <input type="submit" value="Adicionar">
   </form>
 </html>
