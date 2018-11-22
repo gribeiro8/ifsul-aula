@@ -15,6 +15,13 @@ module.exports = function(){
       connection.release();
    });
   }
+
+  this.getUsuarioEmail = function(email, callback){
+    pool.getConnection(function(err,connection){
+      connection.query('Select email from usuarios where email="'+email+'"', callback);
+      connection.release();
+   });
+  }
   
   return this;
 }

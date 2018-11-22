@@ -15,7 +15,16 @@ controller.index = function (application, req, res) {
   });
 };
 controller.adicionar = function (application, req, res) {
-  res.render("usuarios/adicionar.njk", {
+  var gruposModel = application.models.gruposModel;
+
+  gruposModel.getGrupos(function(erro,grupos){
+    if(erro){
+      res.send(erro)
+    }else{
+      res.render("usuarios/adicionar.njk", {
+        grupos : grupos
+      });
+    }
   });
 };
 
