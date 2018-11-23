@@ -1,6 +1,6 @@
 var pool = require('../../config/dbPool');
 
-module.exports = function(){
+var user = function () {
 
   this.getUsuarios = function(callback){
     pool.getConnection(function(err,connection){
@@ -18,10 +18,12 @@ module.exports = function(){
 
   this.getUsuarioEmail = function(email, callback){
     pool.getConnection(function(err,connection){
-      connection.query('Select email from usuarios where email="'+email+'"', callback);
+      connection.query('Select * from usuarios where email="'+email+'"', callback);
       connection.release();
    });
   }
   
   return this;
 }
+
+module.exports = user;

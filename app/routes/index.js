@@ -1,4 +1,4 @@
-const { check, validationResult } = require('express-validator/check');
+const { check, body, validationResult } = require('express-validator/check');
 
 module.exports = function (application) {
   var controllerIndex = application.controllers.index;
@@ -11,14 +11,15 @@ module.exports = function (application) {
     controllerIndex.index(application,req,res);
   });
 
- application.get('/auth', [
-      check('username').isEmail()
-    ], function (req, res) {
-      const errors = validationResult(req);
-      if (!errors.isEmpty()) {
-        return res.status(422).json({ errors: errors.array() });
-      }
-      
-  });
-
+  application.post('/auth', [
+      body('email').isEmail(),
+      body('password').isLength({ min: 5 })],
+      function (req, res) {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+          return res.status(403).json({ errors: errors.array() });
+        }else{
+          controllerIndex.logar(req.body.email, req.body.password);
+        }
+      });
 };
