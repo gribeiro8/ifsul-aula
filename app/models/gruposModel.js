@@ -1,6 +1,6 @@
 var pool = require('../../config/dbPool');
 
-module.exports = grupos
+var grupos = module.exports
 
   grupos.getGrupos = function(callback){
     pool.getConnection(function(err,connection){
