@@ -1,20 +1,17 @@
 var pool = require('../../config/dbPool');
 
-module.exports = function(){
+module.exports = grupos
 
-  this.getGrupos = function(callback){
+  grupos.getGrupos = function(callback){
     pool.getConnection(function(err,connection){
       connection.query('Select * from grupos;', callback);
       connection.release();
    });
   }
 
-  this.salvarGrupo = function(grupo, callback){
+  grupos.salvarGrupo = function(grupo, callback){
     pool.getConnection(function(err,connection){
       connection.query('Insert into grupos set ?',grupo, callback);
       connection.release();
    });
   }
-  
-  return this;
-}
