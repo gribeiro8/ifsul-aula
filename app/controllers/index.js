@@ -6,13 +6,17 @@ controller.login = function (application, req, res) {
   res.render("login.njk", {});
 };
 
-controller.logar = function (application, req, res, email, password) {
-  usuario = user.getUsuarioEmail(email);
-  if (usuario.password == password) { 
-    console.log('Login realizado com sucesso');
-  }else{
-    return res.render("login.njk", {error: 'Dados inválidos'});
-  }
+controller.logar = function (email, password, application, req, res) {
+  user.getUsuarioEmail(email, function(err, usuario){
+    if (err) return res.send(err);
+    if (usuario[0].senha == password) {
+      res.render("index.njk", {
+        teste : "Primeira página com ejs"
+      });
+    }else{
+      return res.render("login.njk", {error: 'Login inválido'});
+    }
+  });
 }
 
 controller.index = function (application, req, res) {

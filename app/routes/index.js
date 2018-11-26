@@ -19,7 +19,7 @@ module.exports = function (application) {
         if (!errors.isEmpty()) {
           return res.status(403).json({ errors: errors.array() });
         }else{
-          controllerIndex.logar(req.body.email, req.body.password);
+          controllerIndex.logar(req.body.email, req.body.password, application,req,res);
         }
       });
 };

@@ -47,6 +47,11 @@
                <input type="password" class="form-control" placeholder="Password" name="password">
                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
             </div>
+            {% if error %}
+            <div class="form-group has-feedback">
+               {{error}}
+            </div>
+            {% endif %}
             <div class="row">
                <div class="col-xs-8">
                   <a href="#">Esqueci minha senha</a><br>

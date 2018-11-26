@@ -14,6 +14,7 @@ controller.index = function (application, req, res) {
     }
   });
 };
+
 controller.adicionar = function (application, req, res) {
   var gruposModel = application.models.gruposModel;
 
