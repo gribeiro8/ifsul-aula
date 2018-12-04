@@ -3,7 +3,16 @@ const user = require('../models/usuariosModel');
 var controller = module.exports;
 
 controller.login = function (application, req, res) {
-  res.render("login.njk", {});
+  var gruposModel = application.models.gruposModel;
+  gruposModel.getGrupos(function(erro,grupos){
+    if(erro){
+      res.send(erro)
+    }else{
+      res.render("login.njk", {
+        grupos : grupos
+      });
+    }
+  });
 };
 
 controller.logar = function (email, password, application, req, res) {
@@ -14,6 +23,7 @@ controller.logar = function (email, password, application, req, res) {
         teste : "Primeira página com ejs"
       });
     }else{
+      
       return res.render("login.njk", {error: 'Login inválido'});
     }
   });
