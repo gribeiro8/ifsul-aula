@@ -1,14 +1,75 @@
-<h1>Grupos</h1>
+{% extends "layout/layout.njk" %}
+{% block header %}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>
+    Grupos
+    <small></small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li class="active">Grupos</li>
+  </ol>
+</section>
+{% endblock %}
 
-<table border="1">
-  <tr>
-    <th>Id</th>
-    <th>Nome do grupo</th>
-  </tr>
-  <%for(i=0;i<grupos.length;i++){%>
-  <tr>
-    <td><%=grupos[i].id%></td>
-    <td><%=grupos[i].nome%></td>
-  </tr>
-  <% } %>
-</table>
+{% block conteudo %}
+<div class="row">
+  <div class="col-xs-12">
+    <div class="box">
+      <div class="box-header">
+        <h3 class="box-title">Lista de grupos</h3>
+        <div class="box-tools">
+          <div class="input-group-btn">            
+            <button type="button" class="btn btn-sm btn-block btn-success" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> Adicionar</button>            
+          </div>
+        </div>
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body table-responsive no-padding">
+        <table class="table table-hover">
+          <tr>
+            <th>Id</th>
+            <th>Nome do grupo</th>
+          </tr>
+          {% for grupo in grupos %}
+          <tr>
+            <td>{{ grupo.id }}</td>
+            <td>{{ grupo.nome }}</td>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+      <!-- /.box-body -->
+    </div>
+    <!-- /.box -->
+  </div>
+</div>
+
+<!-- Modal -->
+   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+   <div class="modal-dialog" role="document">
+      <div class="modal-content">
+         <div class="modal-header">
+         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+         <h4 class="modal-title" id="myModalLabel">Cadastrar novo grupo</h4>
+         </div>
+         <div class="modal-body">
+            <form>
+               <div class="form-group has-feedback">
+                  <label for="exampleInputEmail1">Nome do grupo</label>
+                  <input type="text" class="form-control" name="nome">
+               </div>
+               <button type="submit" class="btn btn-default">Registrar</button>
+            </form>
+         </div>
+         <div class="modal-footer">
+         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+         </div>
+      </div>
+   </div>
+   </div>
+   <!-- /.Modal -->
+
+
+{% endblock %}

@@ -3,13 +3,21 @@ var controller = module.exports;
 controller.index = function (application, req, res) {
   
   var usuariosModel = application.models.usuariosModel;
+  var gruposModel = application.models.gruposModel;
 
   usuariosModel.getUsuarios(function(erro,usuarios){
     if(erro){
       res.send(erro)
     }else{
-      res.render("usuarios/index.njk", {
-        usuarios : usuarios
+      gruposModel.getGrupos(function(erro,grupos){
+        if(erro){
+          res.send(erro)
+        }else{
+          res.render("usuarios/index.njk", {
+            grupos : grupos,
+            usuarios : usuarios
+          });
+        }
       });
     }
   });
