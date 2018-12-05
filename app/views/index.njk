@@ -13,5 +13,44 @@
   </section>
 {% endblock %}
 {% block conteudo %}
-  
+  <ul class="timeline">
+
+    <!-- timeline time label -->
+    <li class="time-label">
+        <span class="bg-red">
+            Data da mensagem
+        </span>
+    </li>
+    <!-- /.timeline-label -->
+
+    <!-- timeline item -->
+    <li>
+      <!-- timeline icon -->
+      <i class="fa fa-envelope bg-blue"></i>
+      <div class="timeline-item">
+          <span class="time"><i class="fa fa-clock-o"></i> 00:00 </span>
+
+          <h3 class="timeline-header"><a href="#">Nome do Usuário</a> ...</h3>
+
+          <div class="timeline-body">
+              ...
+              Menssagem
+          </div>
+
+      </div>
+    </li>
+    <!-- END timeline item -->
+    ...
+  </ul>
+  <!-- /.box-footer -->
+  <div class="box-footer">
+    <form action="#" method="post">
+      {# <img class="img-responsive img-circle img-sm" src="../dist/img/user4-128x128.jpg" alt="Alt Text"> #}
+      <!-- .img-push is used to add margin to elements next to floating images -->
+      <div class="img-push">
+        <input type="text" class="form-control input-sm" placeholder="Press enter to post comment">
+      </div>
+    </form>
+  </div>
+  <!-- /.box-footer -->
 {% endblock %}
