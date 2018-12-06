@@ -9,6 +9,13 @@ var user = module.exports
    });
   }
 
+  user.getUsuariosEspecial = function(select, inner, where, callback){
+    pool.getConnection(function(err,connection){
+      connection.query('Select '+select+' from usuarios as u '+inner+' '+where+';', callback);
+      connection.release();
+   });
+  }
+
   user.salvarUsuario = function(usuario, callback){
     pool.getConnection(function(err,connection){
       connection.query('Insert into usuarios set ?',usuario, callback);
