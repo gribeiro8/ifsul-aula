@@ -18,14 +18,17 @@ controller.login = function (application, req, res) {
 controller.logar = function (email, password, application, req, res) {
   user.getUsuarioEmail(email, function(err, usuario){
     if (err) return res.send(err);
-    if (usuario[0].senha == password) {
-      req.session.email = email;
-      req.session.password = password;
-      console.log(req.session.email);
-      console.log(req.session.password); 
-      res.render("index.njk", {
-        teste : "Primeira página com ejs"
-      });
+    if(usuario.length>0){ // Testa se achou algo no banco com esse usuario e senha
+      if (usuario[0].senha == password) {
+	req.session.email = email;
+      	req.session.password = password;
+      	console.log(req.session.email);
+      	console.log(req.session.password); 
+        res.render("index.njk");
+      }else{
+        
+        return res.render("login.njk", {error: 'Login inválido'});
+      }
     }else{
       
       return res.render("login.njk", {error: 'Login inválido'});
