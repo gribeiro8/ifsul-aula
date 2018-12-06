@@ -5,7 +5,11 @@ controller.index = function (application, req, res) {
   var usuariosModel = application.models.usuariosModel;
   var gruposModel = application.models.gruposModel;
 
-  usuariosModel.getUsuarios(function(erro,usuarios){
+  usuariosModel.getUsuariosEspecial(
+    "u.*, g.nome as gruponome",
+    " inner join grupos as g on u.grupos_id = g.id ",
+    "",
+    function(erro,usuarios){
     if(erro){
       res.send(erro)
     }else{
@@ -40,11 +44,12 @@ controller.adicionar = function (application, req, res) {
 controller.postadicionar = function (application, req, res) {
   var usuariosModel = application.models.usuariosModel;
   var usuario = req.body;
+  delete usuario.senha_confirma;
   usuariosModel.salvarUsuario(usuario, function(erro,usuarios){
     if(erro){
       res.send(erro)
     }else{
-      res.send(usuarios);
+      res.redirect('/usuarios');
     }
   });
 };
