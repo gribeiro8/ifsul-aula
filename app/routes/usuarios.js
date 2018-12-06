@@ -13,4 +13,8 @@ module.exports = function (application) {
     controller.postadicionar(application,req,res);
   });
 
+  application.post('/usuarios/foto', function(req,res){
+    controller.postfoto(application,req,res);
+  });
+
 };

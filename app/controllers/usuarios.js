@@ -48,3 +48,6 @@ controller.postadicionar = function (application, req, res) {
     }
   });
 };
+controller.postfoto = function (application, req, res) {
+
+};
