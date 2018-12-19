@@ -5,11 +5,7 @@ controller.index = function (application, req, res) {
   var usuariosModel = application.models.usuariosModel;
   var gruposModel = application.models.gruposModel;
 
-  usuariosModel.getUsuariosEspecial(
-    "u.*, g.nome as gruponome",
-    " inner join grupos as g on u.grupos_id = g.id ",
-    "",
-    function(erro,usuarios){
+  usuariosModel.getUsuarios(function(erro,usuarios){
     if(erro){
       res.send(erro)
     }else{
@@ -26,6 +22,23 @@ controller.index = function (application, req, res) {
     }
   });
 };
+
+controller.addUser = function (nome, email, senha, senha_confirma, application, req, res) {
+      if(senha != senha_confirma){    
+        req.flash('error', 'Há divergência nas senhas informadas!');
+        res.redirect("usuarios/adicionar");
+        //res.redirect("usuarios/adicionar.njk"); ?
+      }else if(nome.length<=0){
+        req.flash('error', 'O campo nome deve ser preenchido!');
+        res.redirect("usuarios/adicionar");
+        //res.redirect("usuarios/adicionar.njk"); ?
+      }
+      else{
+        //inserirnoBD(dados);
+        req.flash('error', 'Usuário adicionado com sucesso!');
+        res.redirect("/usuarios/adicionar");
+      }
+}
 
 controller.adicionar = function (application, req, res) {
   var gruposModel = application.models.gruposModel;
@@ -44,15 +57,11 @@ controller.adicionar = function (application, req, res) {
 controller.postadicionar = function (application, req, res) {
   var usuariosModel = application.models.usuariosModel;
   var usuario = req.body;
-  delete usuario.senha_confirma;
   usuariosModel.salvarUsuario(usuario, function(erro,usuarios){
     if(erro){
       res.send(erro)
     }else{
-      res.redirect('/usuarios');
+      res.send(usuarios);
     }
   });
-};
-controller.postfoto = function (application, req, res) {
-
 };

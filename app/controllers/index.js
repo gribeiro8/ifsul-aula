@@ -16,32 +16,28 @@ controller.login = function (application, req, res) {
 };
 
 controller.logar = function (email, password, application, req, res) {
+
   user.getUsuarioEmail(email, function(err, usuario){
     if (err) return res.send(err);
     if(usuario.length>0){ // Testa se achou algo no banco com esse usuario e senha
+
       if (usuario[0].senha == password) {
-	      req.session.email = email;
-      	req.session.password = password;
-      	req.session.nome = usuario[0].nome;
-      	req.session.id = usuario[0].id;
-      	console.log(req.session.email);
+        req.session.email = email;
+        req.session.password = password;
+        console.log(req.session.email);
         console.log(req.session.password); 
         res.render("index.njk");
-      }else{
-        
-        return res.render("login.njk", {error: 'Login inválido'});
       }
-    }else{
-      
-      return res.render("login.njk", {error: 'Login inválido'});
+      else if(usuario[0].senha != password){    
+        req.flash('error', 'Senha incorreta!');
+        res.redirect("/");
+      }
+    } else{ 
+      req.flash('error', 'Email incorreto!');
+      res.redirect("/");
     }
   });
 }
-controller.logout = function (application, req, res) {
-  req.session.destroy();
-  res.redirect('/');
-};
-
 
 controller.index = function (application, req, res) {
   res.render("index.njk", {
