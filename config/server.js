@@ -6,7 +6,8 @@ var path = require('path');
 var session = require('express-session');
 var MySQLStore = require('express-mysql-session')(session);
 
-var config = require('../config-db.json');
+//var config = require('../config-db.json');
+var config = require('../config.json');
 
 var sessionStore = new MySQLStore(config.local);
 
@@ -34,6 +35,12 @@ app.use(body.urlencoded({
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(function (req,res,next) {
+  res.locals.moment = require('moment');
+  res.locals.loginnome = req.session.nome;
+  res.locals.loginid = req.session.id;
+  next();
+});
 
 consign({
     cwd: 'app'

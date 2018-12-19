@@ -22,6 +22,8 @@ controller.logar = function (email, password, application, req, res) {
       if (usuario[0].senha == password) {
 	      req.session.email = email;
       	req.session.password = password;
+      	req.session.nome = usuario[0].nome;
+      	req.session.id = usuario[0].id;
       	console.log(req.session.email);
         console.log(req.session.password); 
         res.render("index.njk");
@@ -35,6 +37,11 @@ controller.logar = function (email, password, application, req, res) {
     }
   });
 }
+controller.logout = function (application, req, res) {
+  req.session.destroy();
+  res.redirect('/');
+};
+
 
 controller.index = function (application, req, res) {
   res.render("index.njk", {

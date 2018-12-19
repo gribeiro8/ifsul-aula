@@ -1,0 +1,74 @@
+{% extends "layout/layout.njk" %}
+{% block header %}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>
+    Bot Gabriel
+    <small></small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li class="active">Dashboard</li>
+  </ol>
+</section>
+{% endblock %}
+{% block conteudo %}
+<ul class="timeline" id="dialogos">
+
+  <!-- timeline time label -->
+  <li class="time-label">
+    <span class="bg-red">
+     {{ datahoje }}
+    </span>
+  </li>
+
+ 
+</ul>
+
+<div class="box-footer">
+  <form action="#" method="post">
+    {# <img class="img-responsive img-circle img-sm" src="../dist/img/user4-128x128.jpg" alt="Alt Text"> #}
+    <!-- .img-push is used to add margin to elements next to floating images -->
+    <div class="img-push">
+      <input type="text" class="form-control input-sm" placeholder="Press enter to post comment" id="mensagem">
+      <button class="btn btn-default" type="button" id="enviar_mensagem">Enviar</button>
+    </div>
+  </form>
+</div>
+<!-- /.box-footer -->
+{% endblock %}
+{% block javascript %}
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  var socket = io('http://localhost:3000/');
+
+  $('#enviar_mensagem').click(function () {
+    console.log("Enviei");
+    socket.emit(
+      'msgParaServidor', {
+        mensagem: $('#mensagem').val(),
+      }
+    );
+  });
+
+
+  socket.on('msgParaCliente', function (data) {
+    var html = '';
+
+    html += '<li>';
+    html += '<i class="fa fa-envelope bg-blue"></i>';
+    html += '<div class="timeline-item">';
+    html += '<span class="time"><i class="fa fa-clock-o"></i> '+data.horario+' </span>';
+    html += '<h3 class="timeline-header"><a href="#">'+data.usuario+'</a></h3>';
+    html += '<div class="timeline-body">'+data.mensagem+'</div>';
+    html += '</div>';
+    html += '</li>';
+
+  
+
+    $('#dialogos').append(html);
+
+    window.scrollTo(0, document.body.scrollHeight);
+  });
+</script>
+{% endblock %}
