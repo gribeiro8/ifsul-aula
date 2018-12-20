@@ -1,0 +1,14 @@
+{% extends "layout/layout.njk" %}
+{% block header %}
+	<section class="content-header">
+		<h1>Inserir foto do perfil</h1>
+	</section>
+{% endblock %}
+
+{% block conteudo %}
+	<form action="" method="post" encType="multpart/form-data">
+		<input name="foto" type="file" />
+		<br>
+		<button type="submit"> Enviar </button>
+	</form>
+{% endblock %}
