@@ -13,7 +13,11 @@ module.exports = function (application) {
     controller.postadicionar(application,req,res);
   });
 
-  application.post('/usuarios/foto', function(req,res){
+  application.get('/usuarios/foto/:id', function(req,res){
+    controller.foto(application,req,res);
+  });
+
+  application.post('/usuarios/foto/:id', function(req,res){
     controller.postfoto(application,req,res);
   });
 
