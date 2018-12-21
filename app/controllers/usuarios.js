@@ -65,3 +65,26 @@ controller.postadicionar = function (application, req, res) {
     }
   });
 };
+
+controller.postfoto = function (application, req, res) {
+  console.log(req.files.foto);
+
+  let arquivo = req.files.foto;
+  arquivo.mv('public/img/'+req.files.foto.md5()+'.jpg', function(err) {
+    if (err) {
+      res.send(err);
+    }else {
+      var foto = req.files.foto.md5()+'.jpg';
+
+      var usuariosModel = application.models.usuariosModel;
+
+      usuariosModel.salvarFoto(req.params.id,foto, function(erro,usuarios){
+        if(erro){
+          res.send(erro);
+        }else {
+          res.redirect("/usuarios");
+        }
+      });
+    }
+  });
+};
